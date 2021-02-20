@@ -1,23 +1,34 @@
-import logo from './logo.svg';
 import './App.css';
+import Calendario from './components/Calendario';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import Reminder from './components/Reminder';
+import Description from './components/Description';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container m-5 bg-secondary">
+      
+      <Router>
+            <Link to="/" className="btn btn-secondary lead "> Calendar</Link>
+            <Link to="/reminder" className="btn btn-secondary lead ">Add New Reminder</Link>
+            <Link to="/description" className="btn btn-secondary lead ">Description</Link>
+            <Switch>
+                <Router path="/reminder">
+                  <Reminder/>
+                </Router>
+                <Router path="/description">
+                <Description/>
+                </Router>
+                <Router path="/">
+                  <Calendario/>
+                </Router>
+            </Switch>
+      </Router>
     </div>
   );
 }
